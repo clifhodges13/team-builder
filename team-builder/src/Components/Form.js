@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 
 export default function Form(props) {
 
-  const [memberCard, setMemberCard] = useState({
+  const initialMemberCard = {
     name: '',
     email: '',
     role: ''
-  })
+  }
+
+  const [memberCard, setMemberCard] = useState(initialMemberCard)
 
   const handleChange = e => {
     setMemberCard({
@@ -17,7 +19,16 @@ export default function Form(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(memberCard)
+    props.setMembers([
+      ...props.members,
+      memberCard
+    ])
+    resetForm(e)
+  }
+
+  const resetForm = e => {
+    e.preventDefault()
+    setMemberCard(initialMemberCard)
   }
 
   return (
@@ -27,18 +38,22 @@ export default function Form(props) {
           type="text" 
           placeholder="Name" 
           name="name" 
+          value={memberCard.name}
           onChange={handleChange} />
         <input 
           type="email" 
           placeholder="Email" 
           name="email"
+          value={memberCard.email}
           onChange={handleChange} />
         <input 
           type="text" 
           placeholder="Role" 
           name="role"
+          value={memberCard.role}
           onChange={handleChange} />
         <button type="submit">Become a Member!</button>
+        <button type="submit" onChange={resetForm} >Reset Form</button>
       </form>
     </>
   )
