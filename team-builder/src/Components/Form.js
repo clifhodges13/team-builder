@@ -5,7 +5,7 @@ export default function Form(props) {
   const initialMemberCard = {
     name: '',
     email: '',
-    role: ''
+    role: 'UX Designer'
   }
 
   const [memberCard, setMemberCard] = useState(initialMemberCard)
@@ -46,14 +46,22 @@ export default function Form(props) {
           name="email"
           value={memberCard.email}
           onChange={handleChange} />
-        <input 
+        <select
+          name="role"
+          value={memberCard.role}
+          onChange={handleChange} >
+            <option>UX Designer</option>
+            <option>UI Designer</option>
+            <option>Front End Engineer</option>
+            <option>Back End Engineer</option>
+        </select>
+        {/* <input 
           type="text" 
           placeholder="Role" 
           name="role"
           value={memberCard.role}
-          onChange={handleChange} />
+          onChange={handleChange} /> */}
         <button type="submit">Become a Member!</button>
-        <button type="submit" onChange={resetForm} >Reset Form</button>
       </form>
     </>
   )
