@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
+import Form from './Components/Form'
 
 export default function App() {
-  const [data, setData] = useState([])
+  const [members, setMembers] = useState('')
 
   return (
-    <div>
-      {data.map(member => {
-        return (
-          <div>
-            <h3>{member.name}</h3>
-            <p>{member.email}</p>
-            <p>{member.role}</p>
-          </div>
-        )
-      })}
-    </div>
+    <>
+      <Form setMembers={setMembers} />
+      <div>
+        <h3>{members.name}</h3>
+        <p>{members.email}</p>
+        <p>{members.role}</p>
+      </div>
+    </>
   )
 }
